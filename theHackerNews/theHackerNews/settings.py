@@ -65,7 +65,8 @@ ROBOTSTXT_OBEY = True
 ITEM_PIPELINES = {
    'theHackerNews.pipelines.ThehackernewsPipeline': 300,
 }
-
+MONGO_URI = 'mongodb://localhost:27017'
+MONGO_DATABASE = 'mongo-cti'
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See https://docs.scrapy.org/en/latest/topics/autothrottle.html
 #AUTOTHROTTLE_ENABLED = True
@@ -90,3 +91,6 @@ ITEM_PIPELINES = {
 # Set settings whose default value is deprecated to a future-proof value
 REQUEST_FINGERPRINTER_IMPLEMENTATION = '2.7'
 TWISTED_REACTOR = 'twisted.internet.asyncioreactor.AsyncioSelectorReactor'
+AUTOTHROTTLE_ENABLED = True
+HTTPCACHE_ENABLED = True
+FEED_EXPORT_ENCODING = 'utf-8'
