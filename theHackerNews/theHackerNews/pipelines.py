@@ -6,6 +6,7 @@
 import sqlite3
 import logging
 import pymongo
+import sys
 
 # useful for handling different item types with a single interface
 from itemadapter import ItemAdapter
@@ -37,6 +38,8 @@ class ThehackernewsPipeline:
     def __init__(self, mongo_uri, mongo_db):
         self.mongo_uri = mongo_uri
         self.mongo_db = mongo_db
+        if not self.mongo_uri: sys.exit("You need to provide a MongoDB Connection String using the -s parameter.")
+
 
     @classmethod
     def from_crawler(cls, crawler):
@@ -51,6 +54,8 @@ class ThehackernewsPipeline:
         ## opening db connection
         self.client = pymongo.MongoClient(self.mongo_uri)
         self.db = self.client[self.mongo_db]
+        # Start with a clean database
+        # self.db[self.collection].delete_many({})
 
     def close_spider(self, spider):
         ## clean up when spider is closed
